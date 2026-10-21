@@ -1,6 +1,8 @@
-def main():
-    print("Hello from jev-snake!")
+import os
 
+from typesafe_sdk import TypeSafeClient
 
-if __name__ == "__main__":
-    main()
+client = TypeSafeClient(
+    api_key=os.environ["OPENROUTER_API_KEY"],
+    base_url="https://openrouter.ai/api",
+)

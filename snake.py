@@ -2,7 +2,7 @@ from collections import deque
 import random
 
 class Snake:
-    def __init__(self, n):
+    def __init__(self, n=10):
         self.snake = deque([(0, 0)])
         self.snake_points = set([(0, 0)])
         self.remaining_points = set((i, j) for i in range(n) for j in range(n))
@@ -48,3 +48,18 @@ class Snake:
             return True, len(self.snake)
         else:
             return False, len(self.snake)
+
+    def get_state_str(self):
+        points = 'Current points of snake: ' + ", ".join(str(point) for point in self.snake)
+        apple = 'Current apple location: ' + str(self.apple)
+        board_size = 'Board size: ' + str(self.n) + " by " + str(self.n)
+        instructions = '''
+        This is a game of Snake, where we want to get the snake as large as possible. We fail if we hit ourselves or the walls of the board.
+        We grow the snake by hitting an apple.
+
+        Positions are provided as (row, column) and are 0-indexed. U decreases row, D increases row, L decreases column, R increases column.
+        The final snake coordiante is the head of the snake. This is where we will move from.
+        '''
+
+        board_info = '\n'.join([points, apple, board_size, instructions])
+        return board_info
